@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="株式会社cultivate 公式ブログ - 再生可能エネルギー、英語教育、持続可能な農業に関する最新情報やコラムをお届けします。">
+    <meta name="keywords" content="cultivate, ブログ, 再生可能エネルギー, 英語教育, 持続可能な農業, SDGs, カーボンニュートラル">
+    <title>ブログ | 株式会社cultivate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ブログページ専用スタイル */
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 0 80px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .blog-post {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .blog-post-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-post:hover .blog-post-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-post-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .blog-post-category.energy {
+            background-color: var(--primary-color);
+        }
+        
+        .blog-post-category.english {
+            background-color: var(--secondary-color);
+        }
+        
+        .blog-post-category.farming {
+            background-color: var(--tertiary-color);
+        }
+        
+        .blog-post-content {
+            padding: 30px;
+        }
+        
+        .blog-post-date {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .blog-post-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+            line-height: 1.4;
+        }
+        
+        .blog-post-excerpt {
+            color: var(--gray-700);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .blog-post-link {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        .blog-post-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .blog-post-link:hover::after {
+            width: 100%;
+        }
+        
+        .blog-sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+        
+        .sidebar-section {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-200);
+            color: var(--dark-text);
+        }
+        
+        .categories-list,
+        .recent-posts-list {
+            list-style: none;
+        }
+        
+        .categories-list li,
+        .recent-posts-list li {
+            margin-bottom: 12px;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray-700);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .categories-list a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .category-count {
+            background-color: var(--gray-200);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            transition: all 0.3s ease;
+        }
+        
+        .categories-list a:hover .category-count {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .recent-posts-list a {
+            display: flex;
+            gap: 12px;
+            color: var(--gray-700);
+            transition: all 0.3s ease;
+        }
+        
+        .recent-posts-list a:hover {
+            color: var(--primary-color);
+        }
+        
+        .recent-post-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .recent-post-title {
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 5px;
+        }
+        
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+        
+        .search-form {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            border: 1px solid var(--gray-300);
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .search-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background-color: #219653;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: var(--gray-700);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .pagination-item:hover,
+        .pagination-item.active {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .pagination-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-sidebar {
+                position: static;
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .blog-post-image {
+                height: 200px;
+            }
+            
+            .blog-post-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header id="header">
+        <div class="container header-inner">
+            <div class="logo">cultivate<span>.</span></div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="renewable.html">再エネコンサル</a></li>
+                    <li><a href="https://haraenglish.com/" target="_blank">英語教育</a></li>
+                    <li><a href="index.html#farming">営農事業</a></li>
+                    <li><a href="index.html#localpower">尾道電力</a></li>
+                    <li><a href="index.html#company">会社概要</a></li>
+                    <li><a href="blog.html" class="active">ブログ</a></li>
+                    <li><a href="index.html#contact">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ブログヒーローセクション -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="fade-in">cultivateブログ</h1>
+            <p class="fade-in">再生可能エネルギー、英語教育、持続可能な農業に関する<br>最新情報やコラムをお届けします。</p>
+        </div>
+    </section>
+
+    <!-- ブログコンテンツ -->
+    <div class="blog-container">
+        <main class="blog-posts">
+            <!-- ブログ記事1 -->
+            <article class="blog-post fade-in">
+                <div class="blog-post-image">
+                    <span class="blog-post-category energy">再エネ</span>
+                    <img src="/api/placeholder/800/500" alt="コーポレートPPAの基礎知識">
+                </div>
+                <div class="blog-post-content">
+                    <time class="blog-post-date">2025年3月15日</time>
+                    <h2 class="blog-post-title">企業のカーボンニュートラル実現へ：コーポレートPPAの基礎知識</h2>
+                    <p class="blog-post-excerpt">近年注目を集めるコーポレートPPA（電力購入契約）とは何か、そのメリットとデメリット、導入ステップについて解説します。日本企業の脱炭素化における有効な選択肢として、どのような企業に適しているのかも検討します。</p>
+                    <a href="#" class="blog-post-link">続きを読む →</a>
+                </div>
+            </article>
+            
+            <!-- ブログ記事2 -->
+            <article class="blog-post fade-in">
+                <div class="blog-post-image">
+                    <span class="blog-post-category english">英語教育</span>
+                    <img src="/api/placeholder/800/500" alt="AI時代の英語教育">
+                </div>
+                <div class="blog-post-content">
+                    <time class="blog-post-date">2025年3月10日</time>
+                    <h2 class="blog-post-title">AI時代に求められるビジネス英語スキルとは？ChatGPTと共存する英語コミュニケーション</h2>
+                    <p class="blog-post-excerpt">AI翻訳ツールが発達する今、英語学習の意義はどこにあるのか。AIツールを効果的に活用しながら、人間にしかできない創造的なコミュニケーション能力を高める英語学習法について考察します。</p>
+                    <a href="#" class="blog-post-link">続きを読む →</a>
+                </div>
+            </article>
+            
+            <!-- ブログ記事3 -->
+            <article class="blog-post fade-in">
+                <div class="blog-post-image">
+                    <span class="blog-post-category farming">営農</span>
+                    <img src="/api/placeholder/800/500" alt="都市近郊型農業の可能性">
+                </div>
+                <div class="blog-post-content">
+                    <time class="blog-post-date">2025年3月5日</time>
+                    <h2 class="blog-post-title">都市近郊型農業の可能性：食の地産地消がもたらす環境・経済・社会的メリット</h2>
+                    <p class="blog-post-excerpt">輸送距離の短縮によるCO2削減、地域経済の活性化、食育の推進など、都市近郊型農業が持つ多面的な価値について。当社が尾道市で取り組む「顔の見える農業」の実践例とともに紹介します。</p>
+                    <a href="#" class="blog-post-link">続きを読む →</a>
+                </div>
+            </article>
+            
+            <!-- ブログ記事4 -->
+            <article class="blog-post fade-in">
+                <div class="blog-post-image">
+                    <span class="blog-post-category energy">再エネ</span>
+                    <img src="/api/placeholder/800/500" alt="蓄電池導入の経済性">
+                </div>
+                <div class="blog-post-content">
+                    <time class="blog-post-date">2025年2月28日</time>
+                    <h2 class="blog-post-title">再エネ導入と蓄電池：経済性と環境性を両立させる最適な設計とは</h2>
+                    <p class="blog-post-excerpt">太陽光や風力など変動する再生可能エネルギーを最大限活用するための蓄電池システム。最新の技術動向や価格推移を踏まえ、投資回収を実現するための設計ポイントを解説します。</p>
+                    <a href="#" class="blog-post-link">続きを読む →</a>
+                </div>
+            </article>
+            
+            <!-- ブログ記事5 -->
+            <article class="blog-post fade-in">
+                <div class="blog-post-image">
+                    <span class="blog-post-category english">英語教育</span>
+                    <img src="/api/placeholder/800/500" alt="子どもの英語学習">
+                </div>
+                <div class="blog-post-content">
+                    <time class="blog-post-date">2025年2月20日</time>
+                    <h2 class="blog-post-title">子どもの英語学習：「楽しさ」と「実践力」を両立させるアプローチ</h2>
+                    <p class="blog-post-excerpt">小学校での英語教科化から3年。公教育と民間英語教育の効果的な連携方法や、遊びを通じて自然に英語力を身につける教育法について、当社の英語教室での実践例を交えて紹介します。</p>
+                    <a href="#" class="blog-post-link">続きを読む →</a>
+                </div>
+            </article>
+            
+            <!-- ページネーション -->
+            <div class="pagination fade-in">
+                <a href="#" class="pagination-item disabled">&lt;</a>
+                <a href="#" class="pagination-item active">1</a>
+                <a href="#" class="pagination-item">2</a>
+                <a href="#" class="pagination-item">3</a>
+                <a href="#" class="pagination-item">4</a>
+                <a href="#" class="pagination-item">&gt;</a>
+            </div>
+        </main>
+        
+        <!-- サイドバー -->
+        <aside class="blog-sidebar">
+            <!-- 検索フォーム -->
+            <div class="sidebar-section fade-in">
+                <h3 class="sidebar-title">記事を検索</h3>
+                <form class="search-form">
+                    <input type="text" class="search-input" placeholder="キーワードを入力">
+                    <button type="submit" class="search-button">検索</button>
+                </form>
+            </div>
+            
+            <!-- カテゴリー -->
+            <div class="sidebar-section fade-in">
+                <h3 class="sidebar-title">カテゴリー</h3>
+                <ul class="categories-list">
+                    <li><a href="#">再生可能エネルギー <span class="category-count">18</span></a></li>
+                    <li><a href="#">英語教育 <span class="category-count">12</span></a></li>
+                    <li><a href="#">持続可能な農業 <span class="category-count">9</span></a></li>
+                    <li><a href="#">サステナビリティ <span class="category-count">7</span></a></li>
+                    <li><a href="#">地域活性化 <span class="category-count">5</span></a></li>
+                    <li><a href="#">イベント情報 <span class="category-count">3</span></a></li>
+                </ul>
+            </div>
+            
+            <!-- 最近の投稿 -->
+            <div class="sidebar-section fade-in">
+                <h3 class="sidebar-title">最近の投稿</h3>
+                <ul class="recent-posts-list">
+                    <li>
+                        <a href="#">
+                            <div class="recent-post-image">
+                                <img src="/api/placeholder/150/150" alt="コーポレートPPA">
+                            </div>
+                            <div class="recent-post-content">
+                                <h4 class="recent-post-title">企業のカーボンニュートラル実現へ：コーポレートPPAの基礎知識</h4>
+                                <span class="recent-post-date">2025.03.15</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="recent-post-image">
+                                <img src="/api/placeholder/150/150" alt="AI時代の英語教育">
+                            </div>
+                            <div class="recent-post-content">
+                                <h4 class="recent-post-title">AI時代に求められるビジネス英語スキルとは？</h4>
+                                <span class="recent-post-date">2025.03.10</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="recent-post-image">
+                                <img src="/api/placeholder/150/150" alt="都市近郊型農業">
+                            </div>
+                            <div class="recent-post-content">
+                                <h4 class="recent-post-title">都市近郊型農業の可能性</h4>
+                                <span class="recent-post-date">2025.03.05</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- アーカイブ -->
+            <div class="sidebar-section fade-in">
+                <h3 class="sidebar-title">アーカイブ</h3>
+                <ul class="categories-list">
+                    <li><a href="#">2025年3月 <span class="category-count">3</span></a></li>
+                    <li><a href="#">2025年2月 <span class="category-count">5</span></a></li>
+                    <li><a href="#">2025年1月 <span class="category-count">4</span></a></li>
+                    <li><a href="#">2024年12月 <span class="category-count">6</span></a></li>
+                    <li><a href="#">2024年11月 <span class="category-count">4</span></a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column fade-in">
+                    <h3>株式会社cultivate</h3>
+                    <p>「耕し、育てる」という意味を持つcultivate。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
+                    <div class="social-links">
+                        <a href="#"><span>F</span></a>
+                        <a href="#"><span>T</span></a>
+                        <a href="#"><span>I</span></a>
+                        <a href="#"><span>Y</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="renewable.html">再エネコンサルティング</a></li>
+                        <li><a href="https://haraenglish.com/" target="_blank">英語教育サービス</a></li>
+                        <li><a href="index.html#farming">営農事業</a></li>
+                        <li><a href="index.html#localpower">尾道電力</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="index.html#company">会社概要</a></li>
+                        <li><a href="#">ミッション・ビジョン</a></li>
+                        <li><a href="#">チームメンバー</a></li>
+                        <li><a href="#">採用情報</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>お問い合わせ</h3>
+                    <ul>
+                        <li>〒100-0004</li>
+                        <li>東京都千代田区大手町2-2-2</li>
+                        <li>cultivateビル</li>
+                        <li>TEL: 03-1234-5678</li>
+                        <li>info@cultivate.co.jp</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 株式会社cultivate All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScriptの読み込み -->
+    <script src="js/main.js"></script>
+</body>
+</html>
