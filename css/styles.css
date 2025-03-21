@@ -1096,6 +1096,12 @@ footer::before {
     .service-image {
         height: 180px;
     }
+    /* styles.cssに追加 */
+a.logo {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
     
     .footer-content {
         gap: 30px;
