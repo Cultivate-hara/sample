@@ -100,25 +100,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// js/main.js での確認
-// 要素がビューポートに入ったときのアニメーション
-const observer = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            // デバッグ用コンソール追加
-            console.log('Element activated:', entry.target);
-            // 必要に応じてobserverを解除
-            //observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// すべての対象要素を確実に監視
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-up, .services, .service-card').forEach(el => {
-        observer.observe(el);
-        console.log('Observing element:', el);
-    });
-});
