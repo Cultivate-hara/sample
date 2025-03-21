@@ -1108,3 +1108,40 @@ a.logo {
         gap: 30px;
     }
 }
+/* 各セクションのサービス表示を確保 */
+.renewable-services, 
+.english-services, 
+.farming-services {
+    margin: 20px 0 60px;
+    width: 100%;
+    display: block;
+}
+
+/* サービスカードの表示を確保 */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 40px;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+}
+
+/* アニメーションの修正 */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
