@@ -383,6 +383,7 @@ header.scrolled .hamburger span {
     grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 40px;
     margin-top: 40px;
+    display: grid !important;
 }
 
 .service-card {
