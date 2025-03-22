@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="株式会社cultivate - 会社概要ページ。持続可能な社会の実現を目指し、再生可能エネルギー、英語教育、営農事業を展開する企業です。">
+    <meta name="keywords" content="cultivate, 会社概要, 企業理念, ビジョン, 再生可能エネルギー, 英語教育, 営農">
+    <title>会社概要 | 株式会社cultivate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* 会社概要ページ特有のスタイル */
+        .company-hero {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 0 80px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .company-section {
+            padding: 100px 0;
+        }
+        
+        .company-section:nth-child(even) {
+            background-color: var(--accent-light);
+        }
+        
+        .company-profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .company-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .company-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .company-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .company-details th {
+            text-align: left;
+            padding: 15px 10px 15px 0;
+            width: 130px;
+            color: var(--gray-700);
+            vertical-align: top;
+        }
+        
+        .company-details td {
+            padding: 15px 0;
+            vertical-align: top;
+        }
+        
+        .company-details tr {
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .vision-content {
+            margin-top: 50px;
+        }
+        
+        .vision-item {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .vision-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .vision-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .vision-item p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+        
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .philosophy-item {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .philosophy-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .philosophy-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .philosophy-item p {
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+        
+        .history-timeline {
+            margin-top: 50px;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            float: left;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 20px;
+            width: 100px;
+            padding: 5px 0;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -120px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -120px;
+        }
+        
+        .timeline-point {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #fff;
+            z-index: 1;
+        }
+        
+        .cta-section {
+            background-color: var(--accent-light);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray-700);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        @media (max-width: 992px) {
+            .company-profile {
+                grid-template-columns: 1fr;
+            }
+            
+            .history-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                float: right;
+                margin-left: 80px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                float: right;
+            }
+            
+            .timeline-point {
+                left: 30px;
+            }
+            
+            .timeline-date {
+                position: relative;
+                width: auto;
+                top: 0;
+                left: 0 !important;
+                right: 0 !important;
+                margin-bottom: 10px;
+                display: inline-block;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                right: auto;
+                left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">cultivate<span>.</span></a>
+            <nav>
+                <ul id="menu">
+                    <li><a href="renewable.html">再エネコンサル</a></li>
+                    <li><a href="https://haraenglish.com/" target="_blank">英語教育</a></li>
+                    <li><a href="index.html#farming">営農事業</a></li>
+                    <li><a href="index.html#localpower">尾道電力</a></li>
+                    <li><a href="company.html" class="active">会社概要</a></li>
+                    <li><a href="blog.html">ブログ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 会社概要ヒーロー -->
+    <section class="company-hero">
+        <div class="container">
+            <h1 class="fade-in">会社概要</h1>
+            <p class="fade-in">持続可能な社会の実現を目指し、環境・教育・食の分野で革新的なサービスを提供しています。</p>
+        </div>
+    </section>
+
+    <!-- 会社プロフィール -->
+    <section id="profile" class="company-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">企業プロフィール</h2>
+                <p class="section-description">株式会社cultivateは、再生可能エネルギー、英語教育、持続可能な農業の3つの事業を柱に、地域社会と地球環境に貢献する企業です。</p>
+            </div>
+            
+            <div class="company-profile">
+                <div class="company-image fade-in">
+                    <img src="/api/placeholder/600/400" alt="株式会社cultivateのオフィス">
+                </div>
+                
+                <div class="company-details fade-in">
+                    <table>
+                        <tr>
+                            <th>会社名</th>
+                            <td>株式会社cultivate（カルティベイト）</td>
+                        </tr>
+                        <tr>
+                            <th>設立</th>
+                            <td>2020年4月1日</td>
+                        </tr>
+                        <tr>
+                            <th>代表取締役</th>
+                            <td>山田 太郎</td>
+                        </tr>
+                        <tr>
+                            <th>事業内容</th>
+                            <td>
+                                ・再生可能エネルギーコンサルティング<br>
+                                ・英語教育サービス<br>
+                                ・持続可能な営農事業
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>所在地</th>
+                            <td>〒722-0026<br>広島県尾道市栗原町8506-2<br>クリナップビル 5階</td>
+                        </tr>
+                        <tr>
+                            <th>従業員数</th>
+                            <td>35名（2025年3月現在）</td>
+                        </tr>
+                        <tr>
+                            <th>資本金</th>
+                            <td>5,000万円</td>
+                        </tr>
+                        <tr>
+                            <th>連絡先</th>
+                            <td>TEL: 0848-36-6870<br>E-mail: info@cultivate.co.jp</td>
+                        </tr>
+                        <tr>
+                            <th>取引銀行</th>
+                            <td>広島銀行、三菱UFJ銀行、日本政策金融公庫</td>
+                        </tr>
+                        <tr>
+                            <th>所属団体</th>
+                            <td>日本再生可能エネルギー協会、広島県英語教育研究会、有機農業推進団体</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ミッション・ビジョン -->
+    <section id="vision" class="company-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">ミッション・ビジョン</h2>
+                <p class="section-description">私たちの使命と目指す未来について</p>
+            </div>
+            
+            <div class="vision-content">
+                <div class="vision-item fade-in">
+                    <h3>ミッション（使命）</h3>
+                    <p>「耕し、育てる」という意味を持つcultivateの名のもと、私たちは未来のエネルギー、人材、食を育てることを使命としています。持続可能な社会の実現に向けて、環境と経済の調和を目指し、次世代に豊かな地球を引き継ぐための事業を展開しています。</p>
+                    <p>環境・教育・食という人間の生活の根幹となる3つの分野で革新を起こし、人々の生活の質を高めながら、地球環境の保全にも貢献することで、真の豊かさを実現します。</p>
+                </div>
+                
+                <div class="vision-item fade-in">
+                    <h3>ビジョン（目指す姿）</h3>
+                    <p>2030年までに、再生可能エネルギーの普及・英語教育の革新・持続可能な農業の実践を通じて、10万人の生活に前向きな変化をもたらします。環境負荷を減らしながら、人々の可能性を広げ、地域経済を活性化する事業モデルを日本全国、そしてアジア地域へと展開していきます。</p>
+                    <p>具体的には、以下の状態を実現します：</p>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li>再エネ発電容量100MW以上の開発・導入を支援</li>
+                        <li>英語教育を通じて1万人以上のグローバル人材を育成</li>
+                        <li>持続可能な農業モデルを50地域以上に展開</li>
+                        <li>地域自給型エネルギーシステムを10地域以上で確立</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企業理念 -->
+    <section id="philosophy" class="company-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">企業理念</h2>
+                <p class="section-description">私たちの事業活動の根底にある価値観</p>
+            </div>
+            
+            <div class="philosophy-content">
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🌱</div>
+                    <h3>持続可能性の追求</h3>
+                    <p>環境・社会・経済の三側面から持続可能性を追求し、短期的な利益だけでなく長期的な価値創造にコミットします。私たちの全ての意思決定において、次世代への影響を常に考慮します。</p>
+                </div>
+                
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🔄</div>
+                    <h3>循環型思考</h3>
+                    <p>自然界の循環システムに学び、資源やエネルギーの無駄のない利用、再生可能な資源の活用を推進します。一方通行の「取って、作って、捨てる」モデルから脱却し、循環型の事業モデルを構築します。</p>
+                </div>
+                
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🤝</div>
+                    <h3>共創と協働</h3>
+                    <p>複雑な社会課題の解決には、多様なステークホルダーとの協働が不可欠です。地域社会、企業、行政、教育機関など、様々な主体との対話と協力を大切にし、共に新しい価値を創造します。</p>
+                </div>
+                
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🔍</div>
+                    <h3>透明性と誠実さ</h3>
+                    <p>全ての活動において透明性を保ち、誠実に行動します。失敗からも学び、常に改善を重ねる謙虚な姿勢を持ち続けます。社会からの信頼を最も重要な資産と考えます。</p>
+                </div>
+                
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🚀</div>
+                    <h3>挑戦と革新</h3>
+                    <p>現状に満足せず、常に新しい可能性に挑戦し続けます。テクノロジーと創造性を駆使して、社会課題の解決に革新的なアプローチを提案します。失敗を恐れず、学びと成長の機会として捉えます。</p>
+                </div>
+                
+                <div class="philosophy-item fade-in">
+                    <div class="philosophy-icon">🌍</div>
+                    <h3>地域と地球の調和</h3>
+                    <p>地域に根ざした活動を大切にしながら、グローバルな視点も持ち合わせます。地域の特性や文化を尊重し、地域の発展と地球環境の保全が調和する事業を展開します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 沿革 -->
+    <section id="history" class="company-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">沿革</h2>
+                <p class="section-description">会社設立からの歩み</p>
+            </div>
+            
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2020年4月</div>
+                        <h3>会社設立</h3>
+                        <p>広島県尾道市に株式会社cultivateを設立。再生可能エネルギーコンサルティング事業からスタート。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2020年10月</div>
+                        <h3>英語教育事業開始</h3>
+                        <p>Hara English Academyとして英語教育事業を開始。子ども向け英会話クラスからスタート。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2021年5月</div>
+                        <h3>初の太陽光発電プロジェクト完成</h3>
+                        <p>尾道市内で1.2MWの太陽光発電所の開発・建設を支援し、完成。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2022年3月</div>
+                        <h3>営農事業部門設立</h3>
+                        <p>持続可能な農業の実践と普及を目的とした営農事業部門を設立。有機野菜の生産を開始。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2022年9月</div>
+                        <h3>オンラインコース開始</h3>
+                        <p>英語教育事業でオンラインコースを開始。全国からの受講生を獲得。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2023年6月</div>
+                        <h3>尾道電力株式会社設立</h3>
+                        <p>地域新電力事業を展開する子会社「尾道電力株式会社」を設立。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2023年11月</div>
+                        <h3>東京オフィス開設</h3>
+                        <p>事業拡大に伴い、東京都千代田区に東京オフィスを開設。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2024年4月</div>
+                        <h3>大阪オフィス開設</h3>
+                        <p>関西地区での事業拡大のため、大阪市内にオフィスを開設。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2024年10月</div>
+                        <h3>ソーラーシェアリング事業開始</h3>
+                        <p>営農型太陽光発電（ソーラーシェアリング）の開発・運営支援事業を本格開始。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content fade-in">
+                        <div class="timeline-date">2025年2月</div>
+                        <h3>企業向けサステナビリティ研修開始</h3>
+                        <p>企業向けのサステナビリティ研修プログラムを開発・提供開始。</p>
+                    </div>
+                    <div class="timeline-point"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>私たちと一緒に持続可能な未来を創りませんか？</h2>
+                <p>再生可能エネルギー、英語教育、持続可能な農業など、cultivateのサービスについてのお問い合わせやお見積もりのご依頼は、お気軽にご連絡ください。</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
+                    <a href="renewable.html" class="btn btn-secondary">サービス詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column fade-in">
+                    <h3>株式会社cultivate</h3>
+                    <p>「耕し、育てる」という意味を持つcultivate。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
+                    <div class="social-links">
+                        <a href="#"><span>F</span></a>
+                        <a href="#"><span>T</span></a>
+                        <a href="#"><span>I</span></a>
+                        <a href="#"><span>Y</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="renewable.html">再エネコンサルティング</a></li>
+                        <li><a href="https://haraenglish.com/" target="_blank">英語教育サービス</a></li>
+                        <li><a href="index.html#farming">営農事業</a></li>
+                        <li><a href="index.html#localpower">尾道電力</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="company.html">会社概要</a></li>
+                        <li><a href="#vision">ミッション・ビジョン</a></li>
+                        <li><a href="#">チームメンバー</a></li>
+                        <li><a href="#">採用情報</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>お問い合わせ</h3>
+                    <ul>
+                        <li>〒722-0026</li>
+                        <li>広島県尾道市栗原町8506-2</li>
+                        <li>クリナップビル 5階</li>
+                        <li>TEL: 0848-36-6870</li>
+                        <li>info@cultivate.co.jp</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 株式会社cultivate All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScriptの読み込み -->
+    <script src="js/main.js"></script>
+</body>
+</html>
