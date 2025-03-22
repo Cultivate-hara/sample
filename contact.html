@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="株式会社cultivate - お問い合わせページ。再生可能エネルギー、英語教育、営農事業に関するお問い合わせはこちらから。">
+    <meta name="keywords" content="cultivate, 問い合わせ, 再生可能エネルギー, 英語教育, 営農, 連絡先">
+    <title>お問い合わせ | 株式会社cultivate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* 問い合わせページ特有のスタイル */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 0 80px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .contact-option {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+        
+        .contact-option h3 {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .contact-option p {
+            margin-bottom: 20px;
+            color: var(--gray-600);
+        }
+        
+        .contact-link {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .contact-link:hover::after {
+            width: 100%;
+        }
+        
+        .contact-form-section {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+        
+        .contact-info {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 400px;
+        }
+        
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .address-info {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .address-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .address-item {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .address-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .address-content {
+            color: var(--gray-700);
+        }
+        
+        .address-content strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark-text);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">cultivate<span>.</span></a>
+            <nav>
+                <ul id="menu">
+                    <li><a href="renewable.html">再エネコンサル</a></li>
+                    <li><a href="https://haraenglish.com/" target="_blank">英語教育</a></li>
+                    <li><a href="index.html#farming">営農事業</a></li>
+                    <li><a href="index.html#localpower">尾道電力</a></li>
+                    <li><a href="company.html">会社概要</a></li>
+                    <li><a href="blog.html">ブログ</a></li>
+                    <li><a href="contact.html" class="active">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- お問い合わせヒーロー -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="fade-in">お問い合わせ</h1>
+            <p class="fade-in">サービスに関するご質問や資料請求など、お気軽にお問い合わせください。</p>
+        </div>
+    </section>
+
+    <!-- お問い合わせ方法 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">お問い合わせ方法</h2>
+                <p class="section-description">各種お問い合わせ方法をご用意しています。ご希望の方法でお気軽にご連絡ください。</p>
+            </div>
+            
+            <div class="contact-options">
+                <div class="contact-option fade-in">
+                    <div class="contact-icon">📝</div>
+                    <h3>お問い合わせフォーム</h3>
+                    <p>各種ご質問やお見積もり依頼など、24時間いつでも受け付けております。フォームからのお問い合わせは、通常2営業日以内にご返信いたします。</p>
+                    <a href="#contact-form" class="contact-link">フォームに進む →</a>
+                </div>
+                
+                <div class="contact-option fade-in">
+                    <div class="contact-icon">📞</div>
+                    <h3>お電話</h3>
+                    <p>お急ぎの方やお電話での相談をご希望の方は、こちらの番号までお気軽にお電話ください。</p>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--dark-text); margin-bottom: 10px;">TEL: 0848-36-6870</p>
+                    <p style="font-size: 0.9rem; color: var(--gray-500);">受付時間: 平日 9:00〜18:00</p>
+                </div>
+                
+                <div class="contact-option fade-in">
+                    <div class="contact-icon">✉️</div>
+                    <h3>メール</h3>
+                    <p>以下のメールアドレスに直接ご連絡いただくことも可能です。</p>
+                    <a href="mailto:info@cultivate.co.jp" class="contact-link">info@cultivate.co.jp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section id="contact-form" class="contact-form-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">お問い合わせフォーム</h2>
+                <p class="section-description">以下のフォームに必要事項をご入力の上、「送信する」ボタンをクリックしてください。</p>
+            </div>
+            
+            <div class="contact-form fade-in" id="contactForm">
+                <form>
+                    <div class="form-group">
+                        <label for="name">お名前<span style="color: #e74c3c; margin-left: 5px;">*</span></label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">会社名・組織名</label>
+                        <input type="text" id="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス<span style="color: #e74c3c; margin-left: 5px;">*</span></label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">お問い合わせ内容<span style="color: #e74c3c; margin-left: 5px;">*</span></label>
+                        <select id="service" required>
+                            <option value="">選択してください</option>
+                            <option value="renewable">再エネコンサルについて</option>
+                            <option value="english">英語教育サービスについて</option>
+                            <option value="farming">営農事業について</option>
+                            <option value="localpower">尾道電力について</option>
+                            <option value="recruit">採用について</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">メッセージ<span style="color: #e74c3c; margin-left: 5px;">*</span></label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label class="checkbox-container" style="display: flex; align-items: flex-start; cursor: pointer;">
+                            <input type="checkbox" required style="margin-right: 10px; margin-top: 5px;">
+                            <span style="font-size: 0.9rem;">個人情報の取り扱いについて同意します。当社は、ご入力いただいた個人情報をお問い合わせへの対応および当社サービスのご案内以外には使用いたしません。</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">送信する</button>
+                </form>
+            </div>
+            
+            <!-- 所在地情報 -->
+            <div class="contact-info">
+                <div class="map-container fade-in">
+                    <img src="/api/placeholder/600/400" alt="株式会社cultivateの地図">
+                </div>
+                
+                <div class="address-info fade-in">
+                    <h3>所在地・連絡先</h3>
+                    
+                    <div class="address-item">
+                        <div class="address-icon">📍</div>
+                        <div class="address-content">
+                            <strong>所在地</strong>
+                            〒722-0026<br>
+                            広島県尾道市栗原町8506-2<br>
+                            クリナップビル 5階
+                        </div>
+                    </div>
+                    
+                    <div class="address-item">
+                        <div class="address-icon">🚃</div>
+                        <div class="address-content">
+                            <strong>アクセス</strong>
+                            JR山陽本線 東尾道駅から徒歩10分<br>
+                            または尾道駅からバスで15分
+                        </div>
+                    </div>
+                    
+                    <div class="address-item">
+                        <div class="address-icon">📞</div>
+                        <div class="address-content">
+                            <strong>電話番号</strong>
+                            0848-36-6870
+                        </div>
+                    </div>
+                    
+                    <div class="address-item">
+                        <div class="address-icon">✉️</div>
+                        <div class="address-content">
+                            <strong>メールアドレス</strong>
+                            info@cultivate.co.jp
+                        </div>
+                    </div>
+                    
+                    <div class="address-item">
+                        <div class="address-icon">⏰</div>
+                        <div class="address-content">
+                            <strong>営業時間</strong>
+                            平日 9:00〜18:00<br>
+                            土日祝日 休業
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column fade-in">
+                    <h3>株式会社cultivate</h3>
+                    <p>「耕し、育てる」という意味を持つcultivate。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
+                    <div class="social-links">
+                        <a href="#"><span>F</span></a>
+                        <a href="#"><span>T</span></a>
+                        <a href="#"><span>I</span></a>
+                        <a href="#"><span>Y</span></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="renewable.html">再エネコンサルティング</a></li>
+                        <li><a href="https://haraenglish.com/" target="_blank">英語教育サービス</a></li>
+                        <li><a href="index.html#farming">営農事業</a></li>
+                        <li><a href="index.html#localpower">尾道電力</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="company.html">会社概要</a></li>
+                        <li><a href="company.html#vision">ミッション・ビジョン</a></li>
+                        <li><a href="#">チームメンバー</a></li>
+                        <li><a href="#">採用情報</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column fade-in">
+                    <h3>お問い合わせ</h3>
+                    <ul>
+                        <li>〒722-0026</li>
+                        <li>広島県尾道市栗原町8506-2</li>
+                        <li>クリナップビル 5階</li>
+                        <li>TEL: 0848-36-6870</li>
+                        <li>info@cultivate.co.jp</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 株式会社cultivate All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScriptの読み込み -->
+    <script src="js/main.js"></script>
+</body>
+</html>
