@@ -116,6 +116,8 @@ header.scrolled {
     font-weight: 800;
     color: var(--light-text);
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .logo span {
@@ -999,115 +1001,6 @@ footer::before {
     color: #AAA;
 }
 
-/* レスポンシブ設計 */
-@media (max-width: 992px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
-    
-    .hero p {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    nav ul {
-        gap: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background-color: #fff;
-        flex-direction: column;
-        padding: 80px 30px;
-        z-index: 1000;
-        transition: right 0.4s ease;
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    nav ul.active {
-        right: 0;
-    }
-    
-    nav a {
-        color: var(--dark-text);
-        font-size: 1.2rem;
-        padding: 10px 0;
-        display: block;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
-    .hamburger.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .section {
-        padding: 80px 0;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-description {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .btn {
-        padding: 12px 30px;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .service-image {
-        height: 180px;
-    }
-    /* styles.cssに追加 */
-a.logo {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-}
-    
-    .footer-content {
-        gap: 30px;
-    }
-}
 /* 各セクションのサービス表示を確保 */
 .renewable-services, 
 .english-services, 
@@ -1115,24 +1008,6 @@ a.logo {
     margin: 20px 0 60px;
     width: 100%;
     display: block;
-}
-
-/* サービスカードの表示を確保 */
-.services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: 40px;
-}
-
-.service-card {
-    display: flex;
-    flex-direction: column;
-    background-color: #FFF;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    height: 100%;
 }
 
 /* アニメーションの修正 */
@@ -1146,7 +1021,32 @@ a.logo {
     transform: translateY(0);
 }
 
-<!-- スタイル（styles.cssに追加） -->
+/* 会社名の由来セクション */
+.company-name-origin {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary-color);
+}
+
+.company-name-origin h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.company-name-origin p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.company-name-origin strong {
+    color: var(--dark-text);
+}
+
+/* エネルギーソリューションセクション */
 .energy-solutions {
     background-color: var(--accent-light);
     padding: 100px 0;
@@ -1241,7 +1141,91 @@ a.logo {
     box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
 }
 
+/* チームメンバー紹介の強化スタイル */
+.team-member .team-role {
+    padding: 5px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.team-member .team-specialty {
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.team-member .team-bio {
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent-light);
+}
+
+/* AIによるソリューションを強調するスタイル */
+.ai-powered {
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-powered::before {
+    content: "AI";
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 30px;
+    font-weight: bold;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* カスタムリスト */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* レスポンシブ設計 */
 @media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
     .solution-card {
         flex-direction: column;
     }
@@ -1256,3 +1240,87 @@ a.logo {
     }
 }
 
+@media (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 80px 30px;
+        z-index: 1000;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav ul.active {
+        right: 0;
+    }
+    
+    nav a {
+        color: var(--dark-text);
+        font-size: 1.2rem;
+        padding: 10px 0;
+        display: block;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section {
+        padding: 80px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 12px 30px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .service-image {
+        height: 180px;
+    }
+    
+    .footer-content {
+        gap: 30px;
+    }
+}
