@@ -1145,3 +1145,118 @@ a.logo {
     opacity: 1;
     transform: translateY(0);
 }
+
+<!-- スタイル（styles.cssに追加） -->
+<style>
+.energy-solutions {
+    background-color: var(--accent-light);
+    padding: 100px 0;
+}
+
+.energy-solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.solution-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-10px);
+}
+
+.solution-icon {
+    flex: 0 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 3rem;
+}
+
+.solution-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.solution-content h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.solution-content h4 {
+    font-size: 1.2rem;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.solution-content p {
+    margin-bottom: 25px;
+    line-height: 1.7;
+    color: var(--gray-700);
+}
+
+.solution-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 30px;
+    margin-bottom: 30px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+}
+
+.feature-icon {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-solution {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-solution:hover {
+    background-color: #219653;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+@media (max-width: 992px) {
+    .solution-card {
+        flex-direction: column;
+    }
+    
+    .solution-icon {
+        flex: 0 0 100px;
+        width: 100%;
+    }
+    
+    .solution-features {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+
