@@ -512,6 +512,11 @@ header.scrolled .hamburger span {
     bottom: 20%;
     left: -50px;
 }
+.renewable-hero {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1920/1080');
+    background-size: cover;
+    background-position: center;
+}
 
 /* 英語教育事業 */
 #english {
