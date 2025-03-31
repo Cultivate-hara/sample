@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="株式会社cultivate - 会社概要ページ。持続可能な社会の実現を目指し、再生可能エネルギー、英語教育、営農事業を展開する企業です。">
-    <meta name="keywords" content="cultivate, 会社概要, 企業理念, ビジョン, 再生可能エネルギー, 英語教育, 営農">
-    <title>会社概要 | 株式会社cultivate</title>
+    <meta name="description" content="株式会社Splight - 会社概要ページ。持続可能な社会の実現を目指し、再生可能エネルギー、英語教育、営農事業を展開する企業です。">
+    <meta name="keywords" content="Splight, 会社概要, 企業理念, ビジョン, 再生可能エネルギー, 英語教育, 営農">
+    <title>会社概要 | 株式会社Splight</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
@@ -98,212 +98,63 @@
             color: var(--gray-700);
         }
         
-        .philosophy-content {
+        /* 役員紹介のスタイル追加 */
+        .team-section {
+            padding: 100px 0;
+            background-color: var(--accent-light);
+        }
+        
+        .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
             margin-top: 50px;
         }
         
-        .philosophy-item {
+        .team-member {
             background-color: #fff;
             border-radius: 15px;
-            padding: 30px;
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
             transition: transform 0.3s ease;
         }
         
-        .philosophy-item:hover {
+        .team-member:hover {
             transform: translateY(-10px);
         }
         
-        .philosophy-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background-color: var(--accent-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            color: var(--primary-color);
+        .team-photo {
+            height: 320px;
+            overflow: hidden;
         }
         
-        .philosophy-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-text);
-        }
-        
-        .philosophy-item p {
-            color: var(--gray-700);
-            line-height: 1.6;
-        }
-        
-        .history-timeline {
-            margin-top: 50px;
-            position: relative;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .history-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
+        .team-photo img {
+            width: 100%;
             height: 100%;
-            background-color: var(--primary-color);
-            opacity: 0.3;
+            object-fit: cover;
         }
         
-        .timeline-item {
-            position: relative;
-            padding: 20px 0;
+        .team-info {
+            padding: 30px;
         }
         
-        .timeline-item::after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-        
-        .timeline-content {
-            position: relative;
-            width: 45%;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            float: left;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content {
-            float: right;
-        }
-        
-        .timeline-date {
-            position: absolute;
-            top: 20px;
-            width: 100px;
-            padding: 5px 0;
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-date {
-            right: -120px;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-date {
-            left: -120px;
-        }
-        
-        .timeline-point {
-            position: absolute;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px #fff;
-            z-index: 1;
-        }
-        
-        .cta-section {
-            background-color: var(--accent-light);
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .cta-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .cta-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
             color: var(--dark-text);
         }
         
-        .cta-content p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: var(--gray-700);
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
+        .team-role {
             color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
         }
         
-        .btn-secondary:hover {
-            background-color: var(--primary-color);
-            color: #fff;
-        }
-        
-        @media (max-width: 992px) {
-            .company-profile {
-                grid-template-columns: 1fr;
-            }
-            
-            .history-timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-content {
-                width: calc(100% - 80px);
-                float: right;
-                margin-left: 80px;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content,
-            .timeline-item:nth-child(even) .timeline-content {
-                float: right;
-            }
-            
-            .timeline-point {
-                left: 30px;
-            }
-            
-            .timeline-date {
-                position: relative;
-                width: auto;
-                top: 0;
-                left: 0 !important;
-                right: 0 !important;
-                margin-bottom: 10px;
-                display: inline-block;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-date,
-            .timeline-item:nth-child(even) .timeline-date {
-                right: auto;
-                left: auto;
-            }
+        .team-bio {
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -311,7 +162,7 @@
     <!-- ヘッダー -->
     <header id="header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">cultivate<span>.</span></a>
+            <a href="index.html" class="logo">Splight<span>.</span></a>
             <nav>
                 <ul id="menu">
                     <li><a href="renewable.html">再エネコンサル</a></li>
@@ -344,19 +195,19 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2 class="section-title">企業プロフィール</h2>
-                <p class="section-description">株式会社cultivateは、再生可能エネルギー、英語教育、持続可能な農業の3つの事業を柱に、地域社会と地球環境に貢献する企業です。</p>
+                <p class="section-description">株式会社Splightは、再生可能エネルギー、英語教育、持続可能な農業の3つの事業を柱に、地域社会と地球環境に貢献する企業です。</p>
             </div>
             
             <div class="company-profile">
                 <div class="company-image fade-in">
-                    <img src="/api/placeholder/600/400" alt="株式会社cultivateのオフィス">
+                    <img src="/api/placeholder/600/400" alt="株式会社Splightのオフィス">
                 </div>
                 
                 <div class="company-details fade-in">
                     <table>
                         <tr>
                             <th>会社名</th>
-                            <td>株式会社cultivate（カルティベイト）</td>
+                            <td>株式会社Splight（スプライト）</td>
                         </tr>
                         <tr>
                             <th>設立</th>
@@ -364,7 +215,11 @@
                         </tr>
                         <tr>
                             <th>代表取締役</th>
-                            <td>山田 太郎</td>
+                            <td>原 彪</td>
+                        </tr>
+                        <tr>
+                            <th>取締役</th>
+                            <td>原 沙織</td>
                         </tr>
                         <tr>
                             <th>事業内容</th>
@@ -388,7 +243,7 @@
                         </tr>
                         <tr>
                             <th>連絡先</th>
-                            <td>TEL: 0848-36-6870<br>E-mail: info@cultivate.co.jp</td>
+                            <td>TEL: 0848-36-6870<br>E-mail: info@splight.co.jp</td>
                         </tr>
                         <tr>
                             <th>取引銀行</th>
@@ -399,6 +254,40 @@
                             <td>日本再生可能エネルギー協会、広島県英語教育研究会、有機農業推進団体</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 役員紹介セクション（新規追加） -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">役員紹介</h2>
+                <p class="section-description">私たちの理念を実現する中心メンバーをご紹介します</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/600/800" alt="代表取締役 原 彪">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">原 彪</h3>
+                        <span class="team-role">代表取締役</span>
+                        <p class="team-bio">再エネ分野で10年以上の施工・設計経験と学生時代に培ったプログラミングを活かし、新しい技術「AI」を活用し、再エネの推進とともにお客様の業務課題を解決します。前職では100件以上の営農型太陽光発電のコンサルティングを実施させていただき、農業学校にも通い農業への理解を深めてきました。<br><br>エネルギーの地産地消と持続可能な農業を通じて、地域社会の活性化と環境保全の両立を目指します。</p>
+                    </div>
+                </div>
+                
+                <div class="team-member fade-in">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/600/800" alt="取締役 原 沙織">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">原 沙織</h3>
+                        <span class="team-role">取締役</span>
+                        <p class="team-bio">大阪大学外国語学部在学中にカナダ留学を経て関西圏の学習塾に勤務。その経験を活かし「はら英語教室」を開業し、この春で5周年を迎えます。<br><br>「英語おもしろい」「もっとやりたい！」と生徒が目を輝かせる瞬間が、私の誇りであり最大の原動力です。<br><br>5年目という節目に、Splightの一員として、地元だけでなく全国の英語学習教室に、これまでの知識と経験を共有できることを楽しみにしています。</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -415,7 +304,7 @@
             <div class="vision-content">
                 <div class="vision-item fade-in">
                     <h3>ミッション（使命）</h3>
-                    <p>「耕し、育てる」という意味を持つcultivateの名のもと、私たちは未来のエネルギー、人材、食を育てることを使命としています。持続可能な社会の実現に向けて、環境と経済の調和を目指し、次世代に豊かな地球を引き継ぐための事業を展開しています。</p>
+                    <p>「耕し、育てる」という意味を持つSplightの名のもと、私たちは未来のエネルギー、人材、食を育てることを使命としています。持続可能な社会の実現に向けて、環境と経済の調和を目指し、次世代に豊かな地球を引き継ぐための事業を展開しています。</p>
                     <p>環境・教育・食という人間の生活の根幹となる3つの分野で革新を起こし、人々の生活の質を高めながら、地球環境の保全にも貢献することで、真の豊かさを実現します。</p>
                 </div>
                 
@@ -495,7 +384,7 @@
                     <div class="timeline-content fade-in">
                         <div class="timeline-date">2020年4月</div>
                         <h3>会社設立</h3>
-                        <p>広島県尾道市に株式会社cultivateを設立。再生可能エネルギーコンサルティング事業からスタート。</p>
+                        <p>広島県尾道市に株式会社Splightを設立。再生可能エネルギーコンサルティング事業からスタート。</p>
                     </div>
                     <div class="timeline-point"></div>
                 </div>
@@ -589,7 +478,7 @@
         <div class="container">
             <div class="cta-content fade-in">
                 <h2>私たちと一緒に持続可能な未来を創りませんか？</h2>
-                <p>再生可能エネルギー、英語教育、持続可能な農業など、cultivateのサービスについてのお問い合わせやお見積もりのご依頼は、お気軽にご連絡ください。</p>
+                <p>再生可能エネルギー、英語教育、持続可能な農業など、Splightのサービスについてのお問い合わせやお見積もりのご依頼は、お気軽にご連絡ください。</p>
                 <div class="cta-buttons">
                     <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
                     <a href="renewable.html" class="btn btn-secondary">サービス詳細を見る</a>
@@ -603,8 +492,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column fade-in">
-                    <h3>株式会社cultivate</h3>
-                    <p>「耕し、育てる」という意味を持つcultivate。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
+                    <h3>株式会社Splight</h3>
+                    <p>「耕し、育てる」という意味を持つSplight。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
                     <div class="social-links">
                         <a href="#"><span>F</span></a>
                         <a href="#"><span>T</span></a>
@@ -628,7 +517,7 @@
                     <ul>
                         <li><a href="company.html">会社概要</a></li>
                         <li><a href="#vision">ミッション・ビジョン</a></li>
-                        <li><a href="#">チームメンバー</a></li>
+                        <li><a href="#team">チームメンバー</a></li>
                         <li><a href="#">採用情報</a></li>
                     </ul>
                 </div>
@@ -640,13 +529,13 @@
                         <li>広島県尾道市栗原町8506-2</li>
                         <li>クリナップビル 5階</li>
                         <li>TEL: 0848-36-6870</li>
-                        <li>info@cultivate.co.jp</li>
+                        <li>info@splight.co.jp</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 株式会社cultivate All Rights Reserved.</p>
+                <p>&copy; 2025 株式会社Splight All Rights Reserved.</p>
             </div>
         </div>
     </footer>
