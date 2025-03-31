@@ -1147,7 +1147,6 @@ a.logo {
 }
 
 <!-- スタイル（styles.cssに追加） -->
-<style>
 .energy-solutions {
     background-color: var(--accent-light);
     padding: 100px 0;
@@ -1256,7 +1255,4 @@ a.logo {
         grid-template-columns: 1fr;
     }
 }
-</style>
-
-
 
