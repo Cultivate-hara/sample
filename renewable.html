@@ -1,681 +1,91 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="株式会社cultivate - 再生可能エネルギーコンサルティングサービス。カーボンニュートラル戦略、太陽光・風力発電などの導入支援を行います。">
-    <meta name="keywords" content="cultivate, 再生可能エネルギー, コンサルティング, 太陽光発電, 風力発電, カーボンニュートラル, PPA, 脱炭素">
-    <title>再生可能エネルギーコンサルティング | 株式会社cultivate</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        /* 再エネページ特有のスタイル */
-        .renewable-hero {
-            background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(39, 174, 96, 0.7)), url('/api/placeholder/1920/1080');
-            background-size: cover;
-            background-position: center;
-            padding: 200px 0 100px;
-            text-align: center;
-            color: #fff;
-        }
-        
-        .case-studies {
-            background-color: #f8f9fa;
-            padding: 100px 0;
-        }
-        
-        .case-study {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .case-study:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .case-study-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .case-study-image {
-            height: 220px;
-            overflow: hidden;
-        }
-        
-        .case-study-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .case-study:hover .case-study-image img {
-            transform: scale(1.05);
-        }
-        
-        .case-study-content {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .case-study-title {
-            font-size: 1.5rem;
-            color: var(--dark-text);
-            margin-bottom: 15px;
-        }
-        
-        .case-study-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: var(--gray-600);
-        }
-        
-        .case-study-description {
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        
-        .case-study-results {
-            background-color: var(--accent-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        
-        .results-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .service-process {
-            padding: 100px 0;
-        }
-        
-        .process-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 60px auto 0;
-        }
-        
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background-color: var(--primary-color);
-            opacity: 0.3;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding: 30px 0;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-        
-        .timeline-content {
-            position: relative;
-            width: 45%;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            float: left;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content {
-            float: right;
-        }
-        
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background-color: #fff;
-            transform: rotate(45deg);
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -10px;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -10px;
-        }
-        
-        .timeline-date {
-            position: absolute;
-            top: 30px;
-            width: 120px;
-            padding: 8px 0;
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 30px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-date {
-            right: 0;
-            transform: translateX(50%);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-date {
-            left: 0;
-            transform: translateX(-50%);
-        }
-        
-        .timeline-point {
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px #fff;
-            z-index: 1;
-        }
-        
-        .faq-section {
-            padding: 100px 0;
-            background-color: var(--accent-light);
-        }
-        
-        .faq-container {
-            max-width: 800px;
-            margin: 50px auto 0;
-        }
-        
-        .faq-item {
-            background-color: #fff;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            padding: 20px 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--dark-text);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-        
-        .faq-answer {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            padding: 0 30px 20px;
-            max-height: 500px;
-        }
-        
-        @media (max-width: 768px) {
-            .timeline-content {
-                width: 100%;
-                float: none !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content::before,
-            .timeline-item:nth-child(even) .timeline-content::before {
-                display: none;
-            }
-            
-            .timeline-date {
-                position: relative;
-                top: 0;
-                transform: none !important;
-                margin-bottom: 20px;
-                left: 0 !important;
-                right: 0 !important;
-            }
-            
-            .process-timeline::before,
-            .timeline-point {
-                display: none;
-            }
-            
-            .timeline-item {
-                padding: 15px 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- ヘッダー -->
-    <header id="header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">cultivate<span>.</span></a>
-<nav>
-    <ul id="menu">
-        <li><a href="renewable.html">再エネコンサル</a></li>
-        <li><a href="https://haraenglish.com/" target="_blank">英語教育</a></li>
-        <li><a href="index.html#farming">営農事業</a></li>
-        <li><a href="index.html#localpower">尾道電力</a></li>
-        <li><a href="company.html">会社概要</a></li>
-        <li><a href="blog.html">ブログ</a></li>
-        <li><a href="contact.html">お問い合わせ</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+<!-- ヘッダー部分の更新 -->
+<header id="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">Splight<span>.</span></a>
+        <nav>
+            <ul id="menu">
+                <li><a href="renewable.html">再エネコンサル</a></li>
+                <li><a href="https://haraenglish.com/" target="_blank">英語教育</a></li>
+                <li><a href="index.html#farming">営農事業</a></li>
+                <li><a href="index.html#localpower">尾道電力</a></li>
+                <li><a href="company.html">会社概要</a></li>
+                <li><a href="blog.html">ブログ</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
     </div>
-</nav>
-        </div>
-    </header>
+</header>
 
-    <!-- ヒーローセクション -->
-    <section class="renewable-hero">
-        <div class="container">
-            <h1 class="fade-in">再生可能エネルギーコンサルティング</h1>
-            <p class="fade-in">環境と経済の両立を目指し、最適な再生可能エネルギーソリューションを提案します。<br>企業のカーボンニュートラル戦略から地域の再エネ事業まで、幅広くサポートします。</p>
-        </div>
-    </section>
+<!-- メタタグの更新 -->
+<meta name="description" content="株式会社Splight - 再生可能エネルギーコンサルティングサービス。カーボンニュートラル戦略、太陽光・風力発電などの導入支援を行います。">
+<meta name="keywords" content="Splight, 再生可能エネルギー, コンサルティング, 太陽光発電, 風力発電, カーボンニュートラル, PPA, 脱炭素">
+<title>再生可能エネルギーコンサルティング | 株式会社Splight</title>
 
-    <!-- サービス概要 -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">私たちのサービス</h2>
-                <p class="section-description">再生可能エネルギー分野における豊富な知見と経験を活かし、企業や自治体のニーズに合わせた最適なソリューションを提供します。</p>
-            </div>
-            
-            <div class="services">
-                <div class="service-card slide-in-left">
-                    <div class="service-image">
-                        <img src="/api/placeholder/600/400" alt="太陽光発電プロジェクト">
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">太陽光発電事業開発</h3>
-                        <p class="service-description">工場屋根や遊休地、農地を活用した太陽光発電の導入支援。適地調査からファイナンス、設計、施工管理まで一貫したサービスを提供します。</p>
-                        <ul style="margin-bottom: 20px; padding-left: 20px;">
-                            <li>発電所建設のための適地調査・分析</li>
-                            <li>事業計画策定と収益シミュレーション</li>
-                            <li>系統連系協議のサポート</li>
-                            <li>許認可申請のサポート</li>
-                            <li>EPC業者選定と工事監理</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="/api/placeholder/600/400" alt="風力発電プロジェクト">
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">風力発電コンサルティング</h3>
-                        <p class="service-description">風況調査から許認可申請、地域との合意形成、事業計画策定まで。陸上・洋上風力発電の事業化を専門的知見でサポートします。</p>
-                        <ul style="margin-bottom: 20px; padding-left: 20px;">
-                            <li>風況観測と発電量予測</li>
-                            <li>環境アセスメント対応</li>
-                            <li>地域住民との合意形成支援</li>
-                            <li>洋上風力の海域調査・選定</li>
-                            <li>事業収支計画の策定</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="service-card slide-in-right">
-                    <div class="service-image">
-                        <img src="/api/placeholder/600/400" alt="エネルギー調達戦略">
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">企業向けサステナビリティ戦略</h3>
-                        <p class="service-description">RE100対応やSBT目標達成に向けた再エネ調達戦略の策定。PPA、グリーン電力証書など、企業の環境価値向上に貢献します。</p>
-                        <ul style="margin-bottom: 20px; padding-left: 20px;">
-                            <li>温室効果ガス排出量算定・可視化</li>
-                            <li>カーボンニュートラル目標策定</li>
-                            <li>オンサイトPPA・オフサイトPPAの導入</li>
-                            <li>環境価値調達戦略の立案</li>
-                            <li>ESG/TCFDの情報開示支援</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- サービス提供プロセス -->
-    <section class="service-process">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">プロジェクト実施プロセス</h2>
-                <p class="section-description">再エネプロジェクトの企画から稼働まで、専門チームが一貫してサポートします。</p>
-            </div>
-            
-            <div class="process-timeline fade-in">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>ヒアリング・課題整理</h3>
-                        <p>お客様のニーズや課題をヒアリングし、目標達成に最適な再生可能エネルギー戦略を検討します。企業のサステナビリティ目標や地域特性を考慮した提案を行います。</p>
-                    </div>
-                    <div class="timeline-date">STEP 1</div>
-                    <div class="timeline-point"></div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>現地調査・事業性評価</h3>
-                        <p>候補地の現地調査を実施し、日射量・風況などのデータ収集や、系統連系の可能性、法規制などを調査。事業性の詳細評価と収益シミュレーションを行います。</p>
-                    </div>
-                    <div class="timeline-date">STEP 2</div>
-                    <div class="timeline-point"></div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>事業計画策定</h3>
-                        <p>調査結果をもとに詳細な事業計画を策定。資金調達計画、収支計画、リスク分析などを含む包括的な計画書を作成し、プロジェクトの実現可能性を明確にします。</p>
-                    </div>
-                    <div class="timeline-date">STEP 3</div>
-                    <div class="timeline-point"></div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>許認可取得・地域調整</h3>
-                        <p>各種許認可申請のサポートや、地域住民・自治体との合意形成を支援。環境アセスメント対応や地域貢献策の立案など、円滑な事業推進をバックアップします。</p>
-                    </div>
-                    <div class="timeline-date">STEP 4</div>
-                    <div class="timeline-point"></div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>設計・調達・建設</h3>
-                        <p>最適なEPC業者の選定から契約交渉、施工管理まで一貫してサポート。品質管理や工程管理を徹底し、コスト効率の高い発電所建設を実現します。</p>
-                    </div>
-                    <div class="timeline-date">STEP 5</div>
-                    <div class="timeline-point"></div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>運転開始・アフターサポート</h3>
-                        <p>発電所の運転開始後も、発電量モニタリングや保守管理の最適化、トラブル対応などをサポート。長期的な安定運用と収益最大化を支援します。</p>
-                    </div>
-                    <div class="timeline-date">STEP 6</div>
-                    <div class="timeline-point"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 導入事例 -->
-    <section class="case-studies">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">導入事例</h2>
-                <p class="section-description">これまでに実施したプロジェクトの一部をご紹介します。</p>
-            </div>
-            
-            <div class="case-study-grid">
-                <div class="case-study fade-in">
-                    <div class="case-study-image">
-                        <img src="/api/placeholder/600/400" alt="工場屋根太陽光発電">
-                    </div>
-                    <div class="case-study-content">
-                        <h3 class="case-study-title">製造業A社 工場屋根太陽光発電導入</h3>
-                        <div class="case-study-meta">
-                            <span>神奈川県</span>
-                            <span>2.5MW</span>
-                            <span>2023年竣工</span>
-                        </div>
-                        <p class="case-study-description">RE100達成を目指す製造業A社の工場屋根を活用した太陽光発電システムの導入プロジェクト。構造的な課題や工場操業への影響を最小化する設計を行い、自家消費型の発電システムを構築しました。</p>
-                        <div class="case-study-results">
-                            <p class="results-title">導入効果</p>
-                            <p>・電力コスト：年間約3,000万円削減<br>
-                            ・CO2排出削減：年間約1,000トン<br>
-                            ・BCP対応：災害時の一部電力確保が可能に</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="case-study fade-in">
-                    <div class="case-study-image">
-                        <img src="/api/placeholder/600/400" alt="ソーラーシェアリング">
-                    </div>
-                    <div class="case-study-content">
-                        <h3 class="case-study-title">B市 農業連携型ソーラーシェアリング</h3>
-                        <div class="case-study-meta">
-                            <span>広島県</span>
-                            <span>1.8MW</span>
-                            <span>2024年竣工</span>
-                        </div>
-                        <p class="case-study-description">広島県B市の耕作放棄地を再生し、柑橘栽培とソーラーシェアリングを組み合わせたプロジェクト。地域農業の活性化と再エネ導入を両立し、地産地消型エネルギーモデルを確立しました。</p>
-                        <div class="case-study-results">
-                            <p class="results-title">導入効果</p>
-                            <p>・年間発電量：約200万kWh<br>
-                            ・農業収入：年間約1,200万円<br>
-                            ・新規雇用：8名創出</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="case-study fade-in">
-                    <div class="case-study-image">
-                        <img src="/api/placeholder/600/400" alt="小型風力発電">
-                    </div>
-                    <div class="case-study-content">
-                        <h3 class="case-study-title">C町 小型風力発電プロジェクト</h3>
-                        <div class="case-study-meta">
-                            <span>北海道</span>
-                            <span>100kW×10基</span>
-                            <span>2022年竣工</span>
-                        </div>
-                        <p class="case-study-description">北海道C町の遊休地を活用した小型風力発電プロジェクト。厳冬期の積雪・凍結対策を施し、地域の気候条件に最適化した発電システムを構築。地域新電力と連携し電力の地産地消を実現しました。</p>
-                        <div class="case-study-results">
-                            <p class="results-title">導入効果</p>
-                            <p>・年間発電量：約220万kWh<br>
-                            ・地域還元：年間約800万円<br>
-                            ・CO2排出削減：年間約900トン</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="case-study fade-in">
-                    <div class="case-study-image">
-                        <img src="/api/placeholder/600/400" alt="企業PPA">
-                    </div>
-                    <div class="case-study-content">
-                        <h3 class="case-study-title">小売業D社 コーポレートPPA導入</h3>
-                        <div class="case-study-meta">
-                            <span>全国展開</span>
-                            <span>合計15MW</span>
-                            <span>2023年～</span>
-                        </div>
-                        <p class="case-study-description">全国に店舗を展開する小売業D社向けのコーポレートPPA導入プロジェクト。全国100店舗の駐車場を活用した太陽光カーポートを設置し、長期的な電力コスト削減とCO2排出削減を実現しました。</p>
-                        <div class="case-study-results">
-                            <p class="results-title">導入効果</p>
-                            <p>・電力コスト：15年間で約25億円削減見込み<br>
-                            ・CO2排出削減：年間約6,000トン<br>
-                            ・顧客満足度：電気自動車充電設備併設で向上</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- よくある質問 -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">よくある質問</h2>
-                <p class="section-description">再生可能エネルギープロジェクトに関するよくあるご質問にお答えします。</p>
-            </div>
-            
-            <div class="faq-container fade-in">
-                <div class="faq-item">
-                    <div class="faq-question">再生可能エネルギー導入にはどのくらいの投資が必要ですか？</div>
-                    <div class="faq-answer">
-                        <p>投資額は規模や種類によって大きく異なります。例えば、太陽光発電の場合、産業用（50kW以上）では1kWあたり20～30万円程度の初期投資が目安となります。投資回収年数は通常7～12年程度ですが、自家消費型やPPA方式を活用することで初期投資ゼロのスキームも可能です。具体的なご予算や目標に合わせて最適なプランをご提案いたします。</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">RE100達成のために何から始めればよいですか？</div>
-                    <div class="faq-answer">
-                        <p>まずは現在の電力使用量と CO2排出量の把握から始めることをおすすめします。次に、省エネ施策による使用量削減、自社所有地や建物での再エネ導入（オンサイト）、外部からの再エネ調達（オフサイトPPA、環境価値購入等）の順に検討していくことが効果的です。当社では企業の状況やニーズに合わせた段階的なRE100達成ロードマップを策定し、各ステップの実行をサポートしています。</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">太陽光と風力、どちらが適していますか？</div>
-                    <div class="faq-answer">
-                        <p>立地条件や目的によって最適な選択は異なります。太陽光発電は比較的導入しやすく、メンテナンスも容易ですが、夜間は発電しません。風力発電は昼夜問わず発電できる利点がありますが、安定した風況が必要で、環境アセスメントなどの手続きも複雑です。当社では詳細な現地調査と事業性評価を行い、場合によってはハイブリッド型（太陽光+風力）など最適なシステム構成をご提案します。</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">PPAとはどのようなものですか？</div>
-                    <div class="faq-answer">
-                        <p>PPA（Power Purchase Agreement：電力購入契約）は、発電事業者が需要家の敷地内や近隣地域に再エネ設備を設置・所有し、発電した電力を需要家に供給するモデルです。需要家は初期投資なしで再エネ電力を利用でき、一般的に10～20年の契約期間で固定価格での電力調達が可能になります。オンサイトPPA（自家消費型）とオフサイトPPA（遠隔地立地型）があり、それぞれメリット・デメリットがあります。当社では企業の状況に最適なPPAスキームの構築から契約交渉、設備導入までワンストップでサポートしています。</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">補助金や税制優遇はありますか？</div>
-                    <div class="faq-answer">
-                        <p>再生可能エネルギー導入には国や自治体による様々な支援制度があります。例えば、環境省や経済産業省の補助金制度、グリーン投資減税などの税制優遇、低利融資制度などが活用可能です。ただし、これらの制度は年度ごとに内容が変わることも多いため、最新情報の把握が重要です。当社では常に最新の支援制度情報を収集し、お客様のプロジェクトに最適な制度の活用をご提案・サポートしています。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTAセクション -->
-    <section class="section">
-        <div class="container" style="text-align: center;">
-            <div class="fade-in">
-                <h2 style="font-size: 2.2rem; margin-bottom: 20px;">持続可能な未来へ、一緒に歩みましょう</h2>
-                <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 40px;">再生可能エネルギーの導入に関するご相談、お見積もりのご依頼など、お気軽にお問い合わせください。専門コンサルタントが親身にご対応いたします。</p>
-                <a href="index.html#contact" class="btn btn-primary">お問い合わせ</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- フッター -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column fade-in">
-                    <h3>株式会社cultivate</h3>
-                    <p>「耕し、育てる」という意味を持つcultivate。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
-                    <div class="social-links">
-                        <a href="#"><span>F</span></a>
-                        <a href="#"><span>T</span></a>
-                        <a href="#"><span>I</span></a>
-                        <a href="#"><span>Y</span></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column fade-in">
-                    <h3>サービス</h3>
-                    <ul>
-                        <li><a href="renewable.html">再エネコンサルティング</a></li>
-                        <li><a href="https://haraenglish.com/" target="_blank">英語教育サービス</a></li>
-                        <li><a href="index.html#farming">営農事業</a></li>
-                        <li><a href="index.html#localpower">尾道電力</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column fade-in">
-                    <h3>会社情報</h3>
-                    <ul>
-                        <li><a href="index.html#company">会社概要</a></li>
-                        <li><a href="#">ミッション・ビジョン</a></li>
-                        <li><a href="#">チームメンバー</a></li>
-                        <li><a href="#">採用情報</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column fade-in">
-                    <h3>お問い合わせ</h3>
-                    <ul>
-                        <li>〒100-0004</li>
-                        <li>東京都千代田区大手町2-2-2</li>
-                        <li>cultivateビル</li>
-                        <li>TEL: 03-1234-5678</li>
-                        <li>info@cultivate.co.jp</li>
-                    </ul>
+<!-- フッター部分の更新 -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column fade-in">
+                <h3>株式会社Splight</h3>
+                <p>「耕し、育てる」という意味を持つSplight。私たちは未来のエネルギー、人材、食を育てる企業です。</p>
+                <div class="social-links">
+                    <a href="#"><span>F</span></a>
+                    <a href="#"><span>T</span></a>
+                    <a href="#"><span>I</span></a>
+                    <a href="#"><span>Y</span></a>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2025 株式会社cultivate All Rights Reserved.</p>
+            <div class="footer-column fade-in">
+                <h3>サービス</h3>
+                <ul>
+                    <li><a href="renewable.html">再エネコンサルティング</a></li>
+                    <li><a href="https://haraenglish.com/" target="_blank">英語教育サービス</a></li>
+                    <li><a href="index.html#farming">営農事業</a></li>
+                    <li><a href="index.html#localpower">尾道電力</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column fade-in">
+                <h3>会社情報</h3>
+                <ul>
+                    <li><a href="company.html">会社概要</a></li>
+                    <li><a href="company.html#vision">ミッション・ビジョン</a></li>
+                    <li><a href="company.html#team">チームメンバー</a></li>
+                    <li><a href="#">採用情報</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column fade-in">
+                <h3>お問い合わせ</h3>
+                <ul>
+                    <li>〒722-0026</li>
+                    <li>広島県尾道市栗原町8506-2</li>
+                    <li>クリナップビル 5階</li>
+                    <li>TEL: 0848-36-6870</li>
+                    <li>info@splight.co.jp</li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <div class="copyright">
+            <p>&copy; 2025 株式会社Splight All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
 
-    <!-- JavaScriptの読み込み -->
-    <script src="js/main.js"></script>
-    <script>
-        // FAQ開閉機能
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    item.classList.toggle('active');
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+<!-- CTAセクションの更新 -->
+<section class="section">
+    <div class="container" style="text-align: center;">
+        <div class="fade-in">
+            <h2 style="font-size: 2.2rem; margin-bottom: 20px;">持続可能な未来へ、一緒に歩みましょう</h2>
+            <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 40px;">再生可能エネルギーの導入に関するご相談、お見積もりのご依頼など、お気軽にお問い合わせください。専門コンサルタントが親身にご対応いたします。</p>
+            <a href="contact.html" class="btn btn-primary">お問い合わせ</a>
+        </div>
+    </div>
+</section>
